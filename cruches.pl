@@ -8,7 +8,12 @@
 *              Modélisation du domaine du problème des cruches
 ******************************************************************************/
 
+inf5(P):-
+	P=<5. 
 
+inf7(G):-
+	G=<7.
+	
 /*****************************************************************************
 * Question 0 :  
 *
@@ -17,19 +22,16 @@
 * structure que vous comptez utiliser, en précisant le sens de chaque argument)
 *
 * Réponse : 
-*			On utilise une structure couple(P,G)
+*			On utilise une structure etat(P,G)
 * où... 
 	P : volume rempli de la petite cruche
 	G : volume rempli de la grande cruche
 *            
 ******************************************************************************/
-set_flag(Pmax,5).
-set_flag(Gmax,7).
-
-couple(P,G):-
-	P =< Pmax,
+etat(P,G):-
+	inf5(P),
 	P >= 0,
-	G =< Gmax,
+	inf7(G),
 	G >= 0.
 
 /*****************************************************************************
@@ -42,8 +44,11 @@ couple(P,G):-
 	- le contenu de la petite cruche est P
 	- le contenu de la grande cruche est G
 ******************************************************************************/
-cons_etat_cruche(P, G, couple(P,G)).
-
+cons_etat_cruche(P, G, etat(P,G)):-
+	inf5(P),
+	P >= 0,
+	inf7(G),
+	G >= 0.
 
 
 
@@ -53,7 +58,11 @@ cons_etat_cruche(P, G, couple(P,G)).
 * etat_cruche(?Terme)  qui est vrai si et seulement si Terme est un terme prolog
 *                      qui représente bien un état pour le problème des cruches.
 ******************************************************************************/
-etat_cruche(couple(P,G)):-
+etat_cruche(etat(P,G)):-
+	inf5(P),
+	P >= 0,
+	inf7(G),
+	G >= 0.
 	
 
 

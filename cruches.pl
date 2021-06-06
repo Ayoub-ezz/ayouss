@@ -100,7 +100,8 @@ min(X,Y,X)
 * but(?Etat)   qui est vrai si et seulement si Etat est un état but pour 
 *              le problème des cruches.
 ******************************************************************************/
-
+but(etat(4,_)).
+but(etat(_,4)).
 
 
 

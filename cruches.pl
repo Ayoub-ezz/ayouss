@@ -1,7 +1,7 @@
 /* Ce fichier est encodé en UTF-8 et suit la syntaxe du langage Prolog       */
 /* Merci de NE PAS MODIFIER LE SYSTEME D'ENCODAGE                            */
 
-/* Nom du binome :    BEN_CHEIKH - NOM2     										 */
+/* Nom du binome :    BEN_CHEIKH - EZZAHERY     										 */
 /*           (TODO : remplacez Nom1 et Nom2 par vos noms dans l'ordre alphabétique) */
 
 /*****************************************************************************
@@ -66,10 +66,21 @@ etat_cruche(couple(P,G)):-
 *					applicable pour le problème des cruches, permettant de  
 					passer d'un état Etat à un successeur état NEtat.
 ******************************************************************************/
-operateur(vider_petite,couple(P,G),couple(0,G)).
-operateur(vider_grande,couple(P,G),couple(0,G)).
-operateur(remplir_P,couple(P,G),couple(Pmax,G)).
-operateur(remplir_G,couple(P,G),couple(P,Gmax)).
+operateur(vider_P,etat(P,G),etat(0,G)).
+operateur(vider_G,etat(P,G),etat(0,G)).
+operateur(remplir_P,etat(P,G),etat(Pmax,G)).
+operateur(remplir_G,etat(P,G),etat(P,Gmax)).
+operateur(transverser_P,etat(P,G),etat(Pn,Gn)):-
+    min(P+G,Gmax,Gn),
+    Pn is P+G-Gn.
+operateur(transverser_G,etat(P,G),etat(Pn,Gn)):-
+    min(P+G,Pmax,Pn),
+    Gn is P+G-Pn.
+min(X,Y,Y):-
+    X>=Y,
+    !.
+min(X,Y,X)
+
 
 
 

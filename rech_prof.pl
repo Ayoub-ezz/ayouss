@@ -30,7 +30,7 @@
 rprof(Etat,[Etat]):-
     but(Etat).
 rprof(Etat,[Etat|Sol]):-
-    operateur(Op,Etat,Etat1),
+    operateur(_,Etat,Etat1),
     rprof(Etat1,Sol).
 
 
@@ -81,10 +81,16 @@ rprof_bornee(Etat,[Etat|Sol],ProfMax):-
 *	  états caractérisant recherchée suivant une stratégie de recherche itérative
 *     à profondeur incrémentale.
 ******************************************************************************/
-rprof_incr(Etat,[Etat],_):-
-    but(Etat).
-rprof_incr(Etat,Sol,ProfMax):-
-    rprof        
+rprof_incr(Etat,Solution,ProfMax):-
+    rpinc_aux(Etat,Solution,1,ProfMax).
 
 
+rpinc_aux(Etat,Solution,Prof,ProfMax):-
+    Prof =< ProfMax,
+    rprof_bornee(Etat,Solution,Prof),
+    !.
 
+rpinc_aux(Etat,Solution,Prof,ProfMax):-
+    Prof =< ProfMax,
+    Prof1 is Prof + 1,
+    rpinc_aux(Etat,Solution,Prof1,ProfMax).

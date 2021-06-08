@@ -45,12 +45,14 @@
 * > vérifiez cela manuellement sur quelques états des cruches et/ou du taquin
 * > nb : à la place de NE, vous pouvez aussi mettre n'importe quel terme qui contient NE.
 ******************************************************************************/
+/*Par exemple: en exécutant findall(NE,operateur(OP,etat(0,0),NE),Succ). ca renvoit: 
+Succ = [etat(5, 0), etat(0, 7)].
 
 
+en exécutant findall(NE,operateur(OP,etat(0,1),NE),Succ). ca renvoit: 
+Succ = [etat(0, 0), etat(5, 1), etat(0, 7), etat(1, 0)].
 
-
-
-
+*/
 
 /*****************************************************************************
 * 3) Le codage de l'algorithme de recherche en larguer nécessite alors

@@ -2,7 +2,7 @@
 /* Merci de NE PAS MODIFIER LE SYSTEME D'ENCODAGE     */
 
 
-/* Nom du binome :    NOM1 - NOM2     										 */
+/* Nom du binome :    BEN CHEIKH - EZZAHERY     										 */
 /*           (TODO : remplacez Nom1 et Nom2 par vos noms dans l'ordre alphabétique) */
 
 
@@ -39,17 +39,12 @@ rprof(Etat,[Etat|Sol]):-
 *			une suite d'états sans cycle, caractérisant un chemin solution depuis
 *			Etat vers un état du But.
 ******************************************************************************/
-test_app(X,[Y|L]):-
-    X==Y,
-    !.
-test_app(X,[Y|L]):-
-    X\==Y,
-    test_app(X,L).
+
 rprof_ss_cycle(Etat,[Etat]):-
     but(Etat).    
 rprof_ss_cycle(Etat,[Etat|Sol]):-
     operateur(Op,Etat,Etat1),
-    \+ test_app(Etat,Sol),
+    \+ member(Etat,Sol),
     rprof_ss_cycle(Etat1,Sol).
 
 
@@ -94,3 +89,4 @@ rpinc_aux(Etat,Solution,Prof,ProfMax):-
     Prof =< ProfMax,
     Prof1 is Prof + 1,
     rpinc_aux(Etat,Solution,Prof1,ProfMax).
+

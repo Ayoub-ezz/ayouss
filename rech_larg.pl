@@ -29,10 +29,14 @@
      et testez le sur des exemples simples pour bien comprendre comment
      fonctionne ce prédicat.
 ******************************************************************************/
+lives_in(belladen, belfort).
+lives_in(soukaina, paris).
+lives_in(ahmed, toulouse).
+lives_in(youssef, paris).
+lives_in(ayoub, paris).
 
-
-
-
+/*en tapant findall(X,lives_in(X,paris),L). ca renvoit
+L = [soukaina, youssef, ayoub].*/
 
 
 /*****************************************************************************

@@ -78,27 +78,36 @@ etat_cruche(etat(P,G)):-
 *					applicable pour le problème des cruches, permettant de  
 					passer d'un état Etat à un successeur état NEtat.
 ******************************************************************************/
-operateur(vider_P,etat(_,G),etat(0,G)).
-operateur(vider_G,etat(P,_),etat(P,0)).
-operateur(remplir_P,etat(_,G),etat(Pmax,G)):-
-	inf5(Pmax).
-operateur(remplir_G,etat(P,_),etat(P,Gmax)):-
-	inf7(Gmax).
-operateur(transverser_P,etat(P,G),etat(Pn,Gn)):-
+operateur(vider_P,etat(P,G),etat(0,G)):-
+    inf5(Pmax),
+	P>0.
+operateur(vider_G,etat(P,G),etat(P,0)):-
     inf7(Gmax),
-    min(P+G,Gmax,Gn),
+	G>0.
+operateur(remplir_P,etat(P,G),etat(Pmax,G)):-
+	inf5(Pmax),
+	P<Pmax.
+operateur(remplir_G,etat(P,G),etat(P,Gmax)):-
+	inf7(Gmax),
+	G<Gmax.
+operateur(transverser_P_G,etat(P,G),etat(Pn,Gn)):-
+    inf7(Gmax),
+    P>0,
+    G<Gmax,
+    Y is P+G,
+    min(Y,Gmax,Gn),
     Pn is P+G-Gn.
-operateur(transverser_G,etat(P,G),etat(Pn,Gn)):-
+operateur(transverser_G_P,etat(P,G),etat(Pn,Gn)):-
     Y is P+G,
     inf5(Pmax),
+    G>0,
+    P<Pmax,
     min(Y,Pmax,Pn),
     Gn is P+G-Pn.
 min(X,Y,Y):-
     X>=Y,
     !.
 min(X,_,X).
-
-
 
 
 

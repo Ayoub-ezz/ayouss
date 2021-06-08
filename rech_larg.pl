@@ -5,7 +5,7 @@
 /* Merci de NE PAS MODIFIER LE SYSTEME D'ENCODAGE     */
 
 
-/* Nom du binome :    NOM1 - NOM2     										 */
+/* Nom du binome :    BEN CHEIKH - EZZAHERY     										 */
 /*           (TODO : remplacez Nom1 et Nom2 par vos noms dans l'ordre alphabétique) */
 
 /*****************************************************************************
@@ -36,7 +36,7 @@
 
 
 /*****************************************************************************
-* 2) Pour connaître les tous les succeseurs d'un état E il suffira alors 
+* 2) Pour connaître tous les succeseurs d'un état E il suffira alors 
 * d'utiliser :
 *      	...
 *       findall(NE, operateur(OP,E,NE), Successeurs)
@@ -53,7 +53,7 @@
 
 
 /*****************************************************************************
-* 3) Le codage de l'algorithme de recherche en profondeur nécessite alors
+* 3) Le codage de l'algorithme de recherche en larguer nécessite alors
 * de construire le graphe de recherche et sa frontière.
 * une façon simple de représenter la structure de ce graphe est de 
 * représenter chaque noeud par une structure de la forme : 
@@ -68,7 +68,15 @@
 * veiller à développer à chaque étape, le noeud le plus ancien parmi ceux de la frontière
 * (attention à la façon dont vous rajoutez des noeuds à la frontière).
 ******************************************************************************/
- 
+nd(E, nil):-
+     etat_cruche(E).
+nd(E,Pere):-
+     etat_cruche(E),
+     Pere = nd(E1,_),
+     operateur(_,E1,E).
+
+
+
  
  
  
@@ -87,6 +95,34 @@
 *		- developpés et effectue la recherche
 *		- une procédure auxiliaire qui reconstruit le chemin solution lorsqu'un état but a été atteint.
 ******************************************************************************/
+
+
+rech_larg(E,Sol,NNA,NND):-
+     rech_larg_aux([nd(E,nil)],NoeudBut,[],NNA,NND),
+     recon(NoeudBut,Sol1),
+     reverse(Sol1,Sol).
+
+
+rech_larg_aux([nd(E,Pere)|_],nd(E,Pere),_,1,0):-
+     but(E).
+
+rech_larg_aux([Nd|Frnt],NoeudBut,Develp,NNA,NND):-
+     Nd = nd(E,_),
+     findall(nd(Succ,Nd),(operateur(_,E,Succ),\+ member(Succ,[E|Develp])),Successeurs),
+     append(Frnt,Successeurs,NFrnt),
+     rech_larg_aux(NFrnt,NoeudBut,[E|Develp],NNNA,NNND),
+     length(Successeurs,Length),
+     NNA is NNNA+Length,
+     NND is NNND+1.
+
+recon(nd(E,nil),[E]).
+recon(nd(E,Pere),[E|Sol]):-
+     recon(Pere,Sol).
+
+
+
+
+
 
 
 

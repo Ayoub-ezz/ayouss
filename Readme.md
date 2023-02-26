@@ -24,5 +24,19 @@ $ pip install ramp-workflow
 $ pip install -r requirements.txt
 $ python download_data.py
 ```
+
+### 2-Get Started:
+
+You can find the starting kit here.
+
+It consists on 2 classifiers:
+
+-Logistic Regression
+-KNN
+
+To test the starting kit, you can run:
+```
+$  ramp-test --submission starting_kit
+```
  
  

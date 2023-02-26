@@ -26,6 +26,8 @@ $ pip install -r requirements.txt
 
 ### 2-Get Started:
 
+*The dataset is available in the data folder.*
+
 You can find the starting kit here.
 
 It consists on 2 classifiers:

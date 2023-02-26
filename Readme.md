@@ -19,10 +19,9 @@ This ramp project requires the following dependencies:
 $ pip install ramp-workflow
 ```
  
- 2-Downloading the dataset and the requirements:
- ```
+ 2-Downloading the requirements:
+```
 $ pip install -r requirements.txt
-$ python download_data.py
 ```
 
 ### 2-Get Started:
@@ -32,6 +31,7 @@ You can find the starting kit here.
 It consists on 2 classifiers:
 
 -Logistic Regression
+
 -KNN
 
 To test the starting kit, you can run:

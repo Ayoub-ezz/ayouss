@@ -11,8 +11,9 @@ This RAMP work will be divided into three parts: A first step will be discoverin
 
 ### 1-Set up:
 
-This ramp project requires the following dependencies:
-1-Downloading the ramp workflow
-'''
+This ramp project requires the following dependencies:\\\\
+1-Downloading the ramp workflow (if not already done).\\
+
+```
 $ pip install ramp-workflow
-'''
+```
